@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :set_user, only: %i[show update]
+  before_action :set_user, only: %i[show update destroy]
 
   # GET /users/1
   def show
@@ -26,12 +26,18 @@ class Api::V1::UsersController < ApplicationController
     end
   end
 
+  # DELETE /users/1
+  def destroy
+    @user.destroy
+    head 204
+  end
+
   private
 
   def set_user
     @user = User.find(params[:id])
   end
-  
+
   # Only allow a trusted parameter "white list" through.
   def user_params
     params.require(:user).permit(:email, :password)
