@@ -32,7 +32,7 @@ class Api::V1::ProductsController < ApplicationController
     @product.destroy
     head 204
   end
-  
+
   private
 
   def check_owner
